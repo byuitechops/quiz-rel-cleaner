@@ -2,7 +2,7 @@
   "name": "quiz-rel-cleaner",
   "version": "1.0.0",
   "description": "Template for your children!",
-  "main": "child.js",
+  "main": "main.js",
   "dependencies": {
     "async": "^2.6.0",
     "chalk": "^2.3.0"
