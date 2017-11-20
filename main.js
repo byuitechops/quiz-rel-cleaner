@@ -17,15 +17,28 @@ module.exports = (course, stepCallback) => {
 
     function scanQuiz(quiz, i, finalCb) {
         /* convert dom to string*/
-        var quizContents = quiz.dom.xml();
-        /* replace nasty string(s) */
-        quizContents.replace(/rel=("|')noopener\s*noreferrer\1/g, '');
-
-        //quiz = cheerio.load(quizContents, {decodeEntities: false});
-
-        course.content[i] = cheerio.load(quizContents, {
-            decodeEntities: false
+        
+        console.log(`\n\n\nSTART ${quiz.name} \n\n\n`);
+        
+        var str = '',
+            $ = quiz.dom;
+        
+        console.log($(':contains("rel=\"noopener noreferrer\")').text());
+        
+        
+        $('mattext').get((ele) => {
+            str = $(ele).text();
+            str = str.replace(/rel=("|')noopener\s*noreferrer\1/g, '');
+            $(ele).text(str);
         });
+
+        //console.log($('mattext').text());
+        
+        //quiz.dom = cheerio.load(quizContents, {decodeEntities: false});
+
+        /*course.content[i] = cheerio.load(quizContents, {
+            decodeEntities: false
+        });*/
 
         finalCb(null);
     }
@@ -44,7 +57,7 @@ module.exports = (course, stepCallback) => {
             course.throwErr('quizRelCleaner', err);
             // console.error(err);
         }
-        console.log(course.content);
+        //console.log(course.content);
         stepCallback(null, course);
     });
 
