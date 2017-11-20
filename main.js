@@ -18,17 +18,17 @@ module.exports = (course, stepCallback) => {
     function scanQuiz(quiz, i, finalCb) {
         /* convert dom to string */
         var quizContents = quiz.dom.xml(),
-            itemsFound = 0;
+            itemsFound;
 
         /* count the strings */
-        itemsFound = quizContents.match(/rel=("|')noopener\s*noreferrer\1/g).length;
+        itemsFound = quizContents.match(/rel=("|')noopener\s*noreferrer\1/g);
 
         /* success if no dirty rel's were found */
-        if (itemsFound <= 0) {
+        if (itemsFound === null) {
             course.success('quizRelCleaner', `No rel's found in ${quiz.name}`);
             finalCb(null);
         } else {
-
+            
             /* replace nasty string(s) */
             quizContents = quizContents.replace(/rel=("|')noopener\s*noreferrer\1/g, '');
 
@@ -38,7 +38,7 @@ module.exports = (course, stepCallback) => {
             });
 
             /* Our work here is done */
-            course.success('quizRelCleaner', `${itemsFound} rel's removed from ${quiz.name}`);
+            course.success('quizRelCleaner', `${itemsFound.length} rel's removed from ${quiz.name}`);
             finalCb(null);
         }
     }
