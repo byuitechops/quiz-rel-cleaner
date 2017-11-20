@@ -23,7 +23,7 @@ module.exports = (course, stepCallback) => {
 
         //quiz = cheerio.load(quizContents, {decodeEntities: false});
 
-        course.content[i] = cheerio.load(quizContents, {
+        course.content[i].dom = cheerio.load(quizContents, {
             decodeEntities: false
         });
 
@@ -44,7 +44,7 @@ module.exports = (course, stepCallback) => {
             course.throwErr('quizRelCleaner', err);
             // console.error(err);
         }
-        console.log(course.content);
+        //console.log(course.content);
         stepCallback(null, course);
     });
 
