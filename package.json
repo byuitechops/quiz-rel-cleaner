@@ -1,0 +1,29 @@
+{
+  "name": "quiz-rel-cleaner",
+  "version": "1.0.0",
+  "description": "Template for your children!",
+  "main": "child.js",
+  "dependencies": {
+    "async": "^2.6.0",
+    "chalk": "^2.3.0"
+  },
+  "devDependencies": {
+    "child-development-kit": "github:byuitechops/child-development-kit",
+    "tap": "^10.7.3"
+  },
+  "scripts": {
+    "start": "node ./node_modules/child-development-kit/runChild.js",
+    "test": "tap ./node_modules/child-development-kit/testChild.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byuitechops/quiz-rel-cleaner.git"
+  },
+  "author": "Daniel Green",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/byuitechops/quiz-rel-cleaner/issues"
+  },
+  "homepage": "https://github.com/byuitechops/quiz-rel-cleaner#readme",
+  "childType": "preImport"
+}
