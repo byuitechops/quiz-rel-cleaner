@@ -1,3 +1,4 @@
+/*eslint-env node, es6*/
 /* Dependencies */
 const tap = require('tap');
 

@@ -9,7 +9,7 @@ const asyncLib = require('async');
 const cheerio = require('cheerio');
 
 module.exports = (course, stepCallback) => {
-    course.addModuleReport('quizRelCleaner');
+    course.addModuleReport('quiz-rel-cleaner');
 
     /***************************************************
      * Converts each quiz DOM to a string, removes 
@@ -25,7 +25,7 @@ module.exports = (course, stepCallback) => {
 
         /* success if no dirty rel's were found */
         if (itemsFound === null) {
-            course.success('quizRelCleaner', `No rel's found in ${quiz.name}`);
+            course.success('quiz-rel-cleaner', `No rel's found in ${quiz.name}`);
             finalCb(null);
         } else {
             
@@ -38,7 +38,7 @@ module.exports = (course, stepCallback) => {
             });
 
             /* Our work here is done */
-            course.success('quizRelCleaner', `${itemsFound.length} rel's removed from ${quiz.name}`);
+            course.success('quiz-rel-cleaner', `${itemsFound.length} rel's removed from ${quiz.name}`);
             finalCb(null);
         }
     }
@@ -60,7 +60,7 @@ module.exports = (course, stepCallback) => {
     /* start here */
     asyncLib.eachOf(course.content, findQuizzes, (err) => {
         if (err) {
-            course.throwErr('quizRelCleaner', err);
+            course.throwErr('quiz-rel-cleaner', err);
         }
 
         /* for testing, check each quiz for bad rel's */
