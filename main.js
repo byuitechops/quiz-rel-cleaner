@@ -13,7 +13,7 @@ module.exports = (course, stepCallback) => {
 
     /***************************************************
      * Converts each quiz DOM to a string, removes 
-     * bad rel's, and saves the altered string as a DOM
+     * bad rel(s), and saves the altered string as a DOM
      ***************************************************/
     function scanQuiz(quiz, i, finalCb) {
         /* convert dom to string */
@@ -23,9 +23,9 @@ module.exports = (course, stepCallback) => {
         /* count the strings */
         itemsFound = quizContents.match(/rel=("|')noopener\s*noreferrer\1/g);
 
-        /* success if no dirty rel's were found */
+        /* success if no dirty rel(s) were found */
         if (itemsFound === null) {
-            course.success('quiz-rel-cleaner', `No rel's found in ${quiz.name}`);
+            course.success('quiz-rel-cleaner', `No rel(s) found in ${quiz.name}`);
             finalCb(null);
         } else {
             
@@ -38,7 +38,7 @@ module.exports = (course, stepCallback) => {
             });
 
             /* Our work here is done */
-            course.success('quiz-rel-cleaner', `${itemsFound.length} rel's removed from ${quiz.name}`);
+            course.success('quiz-rel-cleaner', `${itemsFound.length} rel(s) removed from ${quiz.name}`);
             finalCb(null);
         }
     }
@@ -63,7 +63,7 @@ module.exports = (course, stepCallback) => {
             course.throwErr('quiz-rel-cleaner', err);
         }
 
-        /* for testing, check each quiz for bad rel's */
+        /* for testing, check each quiz for bad rel(s) */
         /*course.content.forEach((item)=>{
            if (/quiz_d2l_\d*\.xml/.test(item.name)) {
                console.log(item.name);
