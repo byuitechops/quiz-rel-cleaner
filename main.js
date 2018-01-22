@@ -9,7 +9,6 @@ const asyncLib = require('async');
 const cheerio = require('cheerio');
 
 module.exports = (course, stepCallback) => {
-    course.addModuleReport('quiz-rel-cleaner');
 
     /***************************************************
      * Converts each quiz DOM to a string, removes 
@@ -25,7 +24,6 @@ module.exports = (course, stepCallback) => {
 
         /* success if no dirty rel(s) were found */
         if (itemsFound === null) {
-            course.success('quiz-rel-cleaner', `No rel(s) found in ${quiz.name}`);
             finalCb(null);
         } else {
             
@@ -38,7 +36,7 @@ module.exports = (course, stepCallback) => {
             });
 
             /* Our work here is done */
-            course.success('quiz-rel-cleaner', `${itemsFound.length} rel(s) removed from ${quiz.name}`);
+            course.log('Removed "rel" Tags', `${itemsFound.length} rel(s) removed from ${quiz.name}`);
             finalCb(null);
         }
     }
@@ -60,16 +58,8 @@ module.exports = (course, stepCallback) => {
     /* start here */
     asyncLib.eachOf(course.content, findQuizzes, (err) => {
         if (err) {
-            course.throwErr('quiz-rel-cleaner', err);
+            course.error(err);
         }
-
-        /* for testing, check each quiz for bad rel(s) */
-        /*course.content.forEach((item)=>{
-           if (/quiz_d2l_\d*\.xml/.test(item.name)) {
-               console.log(item.name);
-               console.log(item.dom.xml());
-           }
-        });*/
 
         stepCallback(null, course);
     });
