@@ -24,7 +24,6 @@ module.exports = (course, stepCallback) => {
 
         /* success if no dirty rel(s) were found */
         if (itemsFound === null) {
-            course.message(`No rel(s) found in ${quiz.name}`);
             finalCb(null);
         } else {
             
@@ -37,7 +36,7 @@ module.exports = (course, stepCallback) => {
             });
 
             /* Our work here is done */
-            course.log('Bad rels removed from Quizzes', {"Quiz Name": quiz.name, "rels removed": itemsFound.length});
+            course.log('Removed "rel" Tags', {"Quiz Name": quiz.name, "rels removed": itemsFound.length});
             finalCb(null);
         }
     }
@@ -61,14 +60,6 @@ module.exports = (course, stepCallback) => {
         if (err) {
             course.error(err);
         }
-
-        /* for testing, check each quiz for bad rel(s) */
-        /*course.content.forEach((item)=>{
-           if (/quiz_d2l_\d*\.xml/.test(item.name)) {
-               console.log(item.name);
-               console.log(item.dom.xml());
-           }
-        });*/
 
         stepCallback(null, course);
     });
