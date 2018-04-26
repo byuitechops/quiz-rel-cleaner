@@ -4,8 +4,7 @@
   "description": "Template for your children!",
   "main": "main.js",
   "dependencies": {
-    "async": "^2.6.0",
-    "chalk": "^2.3.0"
+    "async": "^2.6.0"
   },
   "devDependencies": {
     "child-development-kit": "github:byuitechops/child-development-kit",
